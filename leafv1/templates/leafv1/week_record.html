@@ -2,4 +2,8 @@
     <p>Hi there!</p>
     <p>It works!</p>
     {{ week_record.end_date }}
+
+    {% for tf in tf_entries %}
+      {{ tf.display_name }}
+    {% endfor %}
 </html>
