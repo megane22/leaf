@@ -1,0 +1,14 @@
+http://stackoverflow.com/questions/2556041/how-do-i-construct-a-django-form-with-model-objects-in-a-select-widget
+
+https://css-tricks.com/the-checkbox-hack/
+
+set up a label attached to a checkbox
+move the checkbox part of it offscreen
+
+
+test of model creation in manage.py shell
+>>> from leafv1.models import *
+>>> heart = OACatalog.objects.filter(display_name='HEART')[0]
+>>> new_heart_oa = OARecord.objects.create(catalog_entry=heart)
+>>> new_heart_oa
+<OARecord: HEART 2017-07-20T03:16:30.126477+00:00>
