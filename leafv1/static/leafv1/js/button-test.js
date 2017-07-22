@@ -1,14 +1,25 @@
 var joy_colors = [
-  "#e3d1eb", //unselected
-  "#bf95d0", //unselected-hover
-  "#9b59b6", //selected
-  "#5d356d", //selected-hover
+  "rgb(227, 209, 235)", //unselected #e3d1eb
+  "rgb(191, 149, 208)", //unselected-hover #bf95d0
+  "rgb(155, 89, 182)", //selected #9b59b6
+  "rgb(93, 53, 109)", //selected-hover #5d356d
 ];
 
-function hover(tile_id) {
-  var tile = document.getElementById(tile_id);
-  console.log(tile_id)
-  if (isSelected(tile_id)) {
+function getTile(tile_title, tile_num) {
+  var tile_id = "tile-" + tile_title + String(tile_num);
+  return document.getElementById(tile_id);
+}
+
+function isSelected(tile) {
+  if (tile.style.backgroundColor == joy_colors[2] || tile.style.backgroundColor == joy_colors[3]) {
+    return true;
+  }
+  return false;
+}
+
+function hover(tile_title, tile_num) {
+  var tile = getTile(tile_title, tile_num);
+  if (isSelected(tile)) {
     tile.style.backgroundColor = joy_colors[3]; //selected-hover
   }
   else {
@@ -16,10 +27,9 @@ function hover(tile_id) {
   }
 }
 
-function unhover(tile_id) {
-  var tile = document.getElementById(tile_id);
-  console.log(tile_id)
-  if (isSelected(tile_id)) {
+function unhover(tile_title, tile_num) {
+  var tile = getTile(tile_title, tile_num);
+  if (isSelected(tile)) {
     tile.style.backgroundColor = joy_colors[2]; //selected
   }
   else {
@@ -27,21 +37,13 @@ function unhover(tile_id) {
   }
 }
 
-function toggle(tile_id) {
-  	var tile = document.getElementById(tile_id);
-    if (isSelected(tile_id)) {
-      tile.style.backgroundColor = "rgb(155, 89, 182)";
-    }
-    else {
-
-    }
-}
-
-function isSelected(tile_id) {
-  var tile = document.getElementById(tile_id);
-  console.log(tile.style.backgroundColor);
-  if (tile.style.backgroundColor == "rgb(155, 89, 182)") {
-    return true;
+function toggle(tile_title, tile_num) {
+  var tile = getTile(tile_title, tile_num);
+  if (isSelected(tile)) {
+    tile.style.backgroundColor = joy_colors[1]; //unselected-hover
   }
-  return false;
+  else {
+    tile.style.backgroundColor = joy_colors[3]; //selected-hover
+  }
+  isSelected(tile);
 }

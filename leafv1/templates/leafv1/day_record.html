@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {% load static %}
+  {% load my_filters %}
+  <link rel="stylesheet" href="{% static 'leafv1/css/button-test.css' %}">
+  <script rel="javascript" src="{% static 'leafv1/js/button-test.js' %}"></script>
+</head>
+
+<body>
+  {% for tf in tf_entries %}
+  <h2>{{ tf.display_name }}</h2>
+    {% for i in 6|times %}
+      <span class="tile-0to5" id="tile-{{ tf.display_name.lower }}{{ i }}"
+      onmouseover="hover('{{ tf.display_name.lower }}', {{ i }})"
+      onmouseout="unhover('{{ tf.display_name.lower }}', {{ i }})"
+      onclick="toggle('{{ tf.display_name.lower }}', {{ i }})">
+        <span class="tile-content">{{ i }}</span>
+      </span>
+    {% endfor %}
+  {% endfor %}
+</body>
+</html>
